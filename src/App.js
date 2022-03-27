@@ -5,6 +5,7 @@ import Main from './partial/Main';
 import About from './partial/About';
 import Services from './partial/Services';
 import Portfolio from './partial/Portfolio';
+import Courses from './partial/Courses';
 
 function App() {
     return ( 
@@ -14,6 +15,7 @@ function App() {
         <About/>
         <Services/>
         <Portfolio/>
+        <Courses/>
     </div>
     );
 }
