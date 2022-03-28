@@ -13,8 +13,8 @@ function Main() {
           </Col>
           <Col md={6}>
             <div className="bgTitle">
-              <h1 className='title'>Hi, it's me Aldo</h1>
-              <h3 className='sub-tible'>I am a professional freelancer in Peru</h3>
+              <h1 className='title'>Hola, yo soy Aldo</h1>
+              <h3 className='sub-tible'>Soy un profesional freelance en Perú</h3>
             </div>
           </Col>
         </Row>
