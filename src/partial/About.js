@@ -1,16 +1,15 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './../assets/custom.css';
 import Image from 'react-bootstrap/Image'
-import aldo from "./../assets/aldo1.jpeg";
+import aldo1 from "../assets/aldo1.jpeg";
 
 function About() {
   return (
       <Container className="my-5 py-4">
         <Row>
           <Col md={4} className="text-center mb-3">
-            <Image src={aldo} thumbnail width={'300px'}/>
+            <Image src={aldo1} thumbnail width={'300px'}/>
           </Col>
           <Col md={8} className="text-start ps-4">
             

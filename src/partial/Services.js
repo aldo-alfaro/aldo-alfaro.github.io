@@ -30,16 +30,18 @@ export default class Services extends Component {
   }
   
   processList(){
-    const cols = this.state.data.map(item=>{
-      return <Col md={4} className="mb-3">
-        <Card>
-            <Card.Body>
-                <FontAwesomeIcon icon={faHome} />
-                <Card.Title>{item.title}</Card.Title>
-                <Card.Text>{item.description}</Card.Text>
-            </Card.Body>
-        </Card>
-      </Col>
+    const cols = this.state.data.map((item, index)=>{
+      return (
+        <Col md={4} className="mb-3" key={index.toString()} >
+          <Card>
+              <Card.Body>
+                  <FontAwesomeIcon icon={faHome} />
+                  <Card.Title>{item.title}</Card.Title>
+                  <Card.Text>{item.description}</Card.Text>
+              </Card.Body>
+          </Card>
+        </Col>
+      )
     })
     this.setState({cols});
   }

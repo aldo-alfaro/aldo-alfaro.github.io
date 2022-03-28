@@ -6,6 +6,8 @@ import About from './partial/About';
 import Services from './partial/Services';
 import Portfolio from './partial/Portfolio';
 import Courses from './partial/Courses';
+import Studies from './partial/Studies';
+import Footer from './partial/Footer';
 
 function App() {
     return ( 
@@ -14,8 +16,10 @@ function App() {
         <Main/>
         <About/>
         <Services/>
-        <Portfolio/>
         <Courses/>
+        <Studies/>
+        <Portfolio/>
+        <Footer/>
     </div>
     );
 }

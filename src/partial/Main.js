@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './../assets/custom.css';
 import Image from 'react-bootstrap/Image'
 
 function Main() {
@@ -10,7 +9,7 @@ function Main() {
       <Container className="mt-5 pt-5">
         <Row className='text-center'>
           <Col md={6} className="text-center">
-            <Image src={require("./../assets/aldo.jpeg")} roundedCircle className='aldo-img'/>
+            <Image src={require("../assets/aldo.jpeg")} roundedCircle className='aldo-img'/>
           </Col>
           <Col md={6}>
             <div className="bgTitle">
