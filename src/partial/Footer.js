@@ -27,8 +27,8 @@ function Footer() {
       <div className='bg-dark'>
         <Container>
           <footer className="py-2 text-white text-center">
-            <p className="m-0">© 2021 Todos los derechos reservados. Creado por 
-              <span className="text-info">Aldo Alfaro C</span>
+            <p className="m-0">© 2022 Todos los derechos reservados. Creado por 
+              <span className="text-info"> Aldo Alfaro C</span>
             </p>
           </footer>
         </Container>

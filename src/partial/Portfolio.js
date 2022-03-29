@@ -12,7 +12,7 @@ const LIST = [
   },
   {
     title:'Administrador de hotel',
-    description:'Administrador del hotel Plaza Espinar; habitaciones, hespedes, servicios, etc. Desarrollado en Django (python)',
+    description:'Administrador del hotel Plaza Espinar; habitaciones, hespedes, servicios, etc. Desarrollado en Django',
     image:'/imgs/portfolio/admin-plaza-hotel.jpeg',
     url:''
   },
@@ -30,13 +30,13 @@ const LIST = [
   },
   {
     title:'SENR Soluciones Sitio Web',
-    description:'Página web de Compra y Venta de Accesorios: Neumáticos, Hidráulicos y Eléctricos. Desarrollado en Angular',
+    description:'Página web de Compra y Venta de Accesorios: Neumáticos, Hidráulicos y Eléctricos.',
     image:'/imgs/portfolio/senr.jpeg',
-    url:'https://www.ventilson.com'
+    url:'https://www.senrsoluciones.com'
   },
   {
     title:'Sitio web Municipio Cotabambas',
-    description:'Página web institucional de la municipalidad de Tambobamba Cotabambas Apurimac. Desarrollado en Django',
+    description:'Página web de la municipalidad de Tambobamba Cotabambas Apurimac. Desarrollado en Django',
     image:'/imgs/portfolio/muni-cotabambas-web.jpeg',
     url:'https://www.muniprovincialcotabambas.gob.pe'
   }
@@ -45,7 +45,7 @@ const LIST = [
 function MyCard(props) {
   return (
     <Col md={4} className="mb-3">
-      <Card>
+      <Card className='shadow'>
         <a href={props.item.url} target="_blank" rel="noopener noreferrer">
         <Card.Img variant="top" src={props.item.image} />
         </a>

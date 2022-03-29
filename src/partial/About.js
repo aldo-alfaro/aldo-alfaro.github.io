@@ -12,19 +12,13 @@ function About() {
             <Image src={aldo1} thumbnail width={'300px'}/>
           </Col>
           <Col md={8} className="text-start ps-4">
-            
-            <h2>About Me</h2>
-            <p className='fs-5'>
-            Systems Engineer collegiate in the CIP with more than 5 years of experience in the
-development of multi-platform web applications (web pages, web systems); front end and
-backend, management of information technologies such as "web services" and languages ​​such as
-python (frameworks: django and django rest framework), web language (javascript, jquery,
-angular, html5, css, bootstrap, materialize, angular material.
-            </p>
+            <h2>¿Quién soy?</h2>
+            <p className='fs-5'>Soy Ingeniero de Sistemas Colegiado con más de 5 años de experiencia en el desarrollo de aplicaciones web (Páginas web, Sistemas web) multiplataforma; frontend y backend. </p>
+            <p className='fs-5'>Manejo de tecnologías de información como las “web services” y lenguajes como python (frameworks: django y django rest framework), express, nodejs, lenguaje web (javascript, jquery, angularjs, angular, reactjs, vuejs, html5, css, bootstrap, materialize, angular material, etc.)</p>
             <ul>
-                <li>Name: Aldo Alfaro Curitumay</li>
-                <li>Age: 32</li>
-                <li>Occupation: Web Developer</li>
+                <li>Nombre: Aldo Alfaro Curitumay</li>
+                <li>Edad: 32</li>
+                <li>Ocupación: Desarrollador web</li>
             </ul>
 
           </Col>
