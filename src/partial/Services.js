@@ -67,7 +67,7 @@ export default class Services extends Component {
 
       return (
         <Container className="my-5 py-3">
-          <h2 className='text-center'>Services</h2>
+          <h2 className='text-center'>Servicios</h2>
           <Row className='justify-content-center text-start'>
             { this.state.cols}            
           </Row>
