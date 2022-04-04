@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b6c9ddae.css",
-    "main.js": "/static/js/main.f4fbfde1.js",
+    "main.css": "/static/css/main.495fd4e2.css",
+    "main.js": "/static/js/main.44102aaf.js",
     "static/js/787.521de95b.chunk.js": "/static/js/787.521de95b.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/aldo1.jpeg": "/static/media/aldo1.8bdc0979cb259416e78b.jpeg",
@@ -12,12 +12,12 @@
     "static/media/aldo.jpeg": "/static/media/aldo.61d558547cda52bacbed.jpeg",
     "static/media/develop.jpg": "/static/media/develop.18d56d2746688076f88f.jpg",
     "index.html": "/index.html",
-    "main.b6c9ddae.css.map": "/static/css/main.b6c9ddae.css.map",
-    "main.f4fbfde1.js.map": "/static/js/main.f4fbfde1.js.map",
+    "main.495fd4e2.css.map": "/static/css/main.495fd4e2.css.map",
+    "main.44102aaf.js.map": "/static/js/main.44102aaf.js.map",
     "787.521de95b.chunk.js.map": "/static/js/787.521de95b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b6c9ddae.css",
-    "static/js/main.f4fbfde1.js"
+    "static/css/main.495fd4e2.css",
+    "static/js/main.44102aaf.js"
   ]
 }
