@@ -1,67 +1,94 @@
-import './Skills.css';
-import { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const LIST = [
   {
-    title:'DESARROLLO DE SITIOS WEB',
-    description:'Desarrollo de aplicaciones web multiplataforma'
+    title:'python',
+    url:'imgs/logos/python.png',
+    porcent:85,
   },
   {
-    title:'DISEÑO DE SITIOS WEB',
-    description:'Desarrollo de aplicaciones web multiplataforma'
+    title:'django',
+    url:'imgs/logos/django.png',
+    porcent:87,
   },
-  
+  {
+    title:'django rest framework',
+    url:'imgs/logos/drf.png',
+    porcent:85,
+  },
+  {
+    title:'angular',
+    url:'imgs/logos/angular.png',
+    porcent:90,
+  },
+  {
+    title:'react',
+    url:'imgs/logos/react192.png',
+    porcent:55,
+  },
+  {
+    title:'vue',
+    url:'imgs/logos/vuejs.png',
+    porcent:20,
+  },
+  {
+    title:'javascript',
+    url:'imgs/logos/javascript.png',
+    porcent:93,
+  },
+  {
+    title:'html5',
+    url:'imgs/logos/html5.png',
+    porcent:94,
+  },
+  {
+    title:'css',
+    url:'imgs/logos/css3.png',
+    porcent:80,
+  },
+  {
+    title:'nest',
+    url:'imgs/logos/nest.svg',
+    porcent:25,
+  },
+  {
+    title:'java',
+    url:'imgs/logos/java.png',
+    porcent:50,
+  },
+  {
+    title:'node + express js + mongodd',
+    url:'imgs/logos/node_express.jpeg',
+    porcent:50,
+  }
 ]
 
-export default class Skills extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      data:LIST
-    }
-  }
-  
-  processList(){
-    const cols = this.state.data.map((item, index)=>{
-      return (
-        <Col md={2} className="mb-3" key={index.toString()} >
-          <div class="circle-wrap">
-            <div class="circle">
-              <div class="mask full">
-                <div class="fill"></div>
-              </div>
-              <div class="mask half">
-                <div class="fill"></div>
-              </div>
-              <div class="inside-circle"> 
-                <span>python</span><br />
-                <span>75%</span>
-              </div>
-            </div>
-          </div>
-        </Col>
-      )
-    })
-    this.setState({cols});
-  }
-
-  componentDidMount(){
-    this.processList()
-  }
-
-  render() {
-
-      return (
-        <Container className="my-5 py-3">
-          <h2 className='text-center'>Skills</h2>
-          <Row className='justify-content-center text-start'>
-            { this.state.cols}            
-          </Row>
-        </Container>
-
-      )
-  }
+function MyItems(props) {
+  return (
+    <Col xs={6} md={2} className="mb-3">
+      <CircularProgressbarWithChildren value={props.item.porcent}>
+      <img src={props.item.url} className="fluid" alt={props.item.title} style={{ width: 75, marginTop: 10 }}/> <br />
+      <div className="text-center">
+        <strong>{props.item.porcent}%</strong> 
+      </div>
+      </CircularProgressbarWithChildren>
+    </Col>
+  )
 }
+
+function Skills() {
+  return (
+    <Container className="my-5 py-3">
+      <h2 className='text-center'>Skills</h2>
+      <Row className='justify-content-center'>
+      { LIST.map((t, index)=> <MyItems item={t} key={index.toString()} />) }
+      </Row>
+    </Container>
+  );
+}
+
+export default Skills;

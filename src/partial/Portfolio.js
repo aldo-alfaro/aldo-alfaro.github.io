@@ -64,7 +64,7 @@ function Portfolio() {
       <h2 className='text-center'>Portafolio</h2>
       <p className='myDescription fs-5'>En el desarrollo de mi carrera profesional tuve la oportunidad de realizar algunos proyectos de manera libre.</p>
       <Row>
-        { LIST.map((t, index)=> <MyCard item={t} key={index.toString()} />) }            
+        { LIST.map((t, index)=> <MyCard item={t} key={index.toString()} />) }
       </Row>
     </Container>
   );
