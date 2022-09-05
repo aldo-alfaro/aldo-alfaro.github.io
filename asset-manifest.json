@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.495fd4e2.css",
-    "main.js": "/static/js/main.44102aaf.js",
+    "main.css": "/static/css/main.12772640.css",
+    "main.js": "/static/js/main.8817d77e.js",
     "static/js/787.521de95b.chunk.js": "/static/js/787.521de95b.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
-    "static/media/aldo1.jpeg": "/static/media/aldo1.8bdc0979cb259416e78b.jpeg",
     "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/aldito.png": "/static/media/aldito.ad09b8483543348fa3df.png",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
-    "static/media/aldo.jpeg": "/static/media/aldo.61d558547cda52bacbed.jpeg",
     "static/media/develop.jpg": "/static/media/develop.18d56d2746688076f88f.jpg",
     "index.html": "/index.html",
-    "main.495fd4e2.css.map": "/static/css/main.495fd4e2.css.map",
-    "main.44102aaf.js.map": "/static/js/main.44102aaf.js.map",
+    "main.12772640.css.map": "/static/css/main.12772640.css.map",
+    "main.8817d77e.js.map": "/static/js/main.8817d77e.js.map",
     "787.521de95b.chunk.js.map": "/static/js/787.521de95b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.495fd4e2.css",
-    "static/js/main.44102aaf.js"
+    "static/css/main.12772640.css",
+    "static/js/main.8817d77e.js"
   ]
 }
