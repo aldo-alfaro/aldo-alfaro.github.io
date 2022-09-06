@@ -1,23 +1,21 @@
 import './App.css';
 import Header from './partial/header';
-import Main from './partial/Main';
 import About from './partial/About';
-import Services from './partial/Services';
-import Portfolio from './partial/Portfolio';
-// import Courses from './partial/Courses';
 import Footer from './partial/Footer';
-import Skills from './partial/Skills';
+import Home from './Home';
+import { Route, Routes } from 'react-router-dom';
+import PageDetail from './pages/portfolio/PageDetail';
 
 function App() {
     return ( 
     <div className = "App">
         <Header/>
-        <Main/>
-        <About/>
-        <Services/>
-        {/* <Courses/> */}
-        <Skills/>
-        <Portfolio/>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="portfolio/:slug" element={<PageDetail />} />
+            {/* <Route path = '*' element = {<NotFound />} /> */}
+        </Routes>
         <Footer/>
     </div>
     );

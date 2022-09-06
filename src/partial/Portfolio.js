@@ -2,56 +2,27 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Card } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { baseUrl, UCODE, CAT_CODE } from '../services/common';
 
-const LIST = [
-  {
-    title:'Página web',
-    description:'Pagina web del hotel "Espinar Plaza hotel" con reservaciones en linea. Desarrollado en Angular',
-    image:'/imgs/portfolio/eph.jpeg',
-    url:'https://www.espinarplazahotel.com'
-  },
-  {
-    title:'Administrador de hotel',
-    description:'Administrador del hotel Plaza Espinar; habitaciones, hespedes, servicios, etc. Desarrollado en Django',
-    image:'/imgs/portfolio/admin-plaza-hotel.jpeg',
-    url:''
-  },
-  {
-    title:'Sistema de ventas',
-    description:'Sistema de ventas, compras, automatización de inventarios, kardex, caja. Y facturación electrónica',
-    image:'/imgs/portfolio/sis-ventas.jpeg',
-    url:'https://dyauri.latin.pe'
-  },
-  {
-    title:'Neumaticas Ventilson Web',
-    description:'Página web de una tienda de válvulas neumáticas "Ventilson SAC". Desarrollado en Angular',
-    image:'/imgs/portfolio/ventilson-productos.jpeg',
-    url:'https://www.ventilson.com'
-  },
-  {
-    title:'SENR Soluciones Sitio Web',
-    description:'Página web de Compra y Venta de Accesorios: Neumáticos, Hidráulicos y Eléctricos.',
-    image:'/imgs/portfolio/senr.jpeg',
-    url:'https://www.senrsoluciones.com'
-  },
-  {
-    title:'Sitio web Municipio Cotabambas',
-    description:'Página web de la municipalidad de Tambobamba Cotabambas Apurimac. Desarrollado en Django',
-    image:'/imgs/portfolio/muni-cotabambas-web.jpeg',
-    url:'https://www.muniprovincialcotabambas.gob.pe'
-  }
-]
+const API_URL = `${baseUrl}/control/categorias/?ucode=${UCODE}&codigo=${CAT_CODE}`
+
+// this.categs = r[0].hijos.filter((t:any) => t.is_public);
 
 function MyCard(props) {
   return (
     <Col md={4} className="mb-3">
       <Card className='shadow'>
-        <a href={props.item.url} target="_blank" rel="noopener noreferrer">
-        <Card.Img variant="top" src={props.item.image} />
-        </a>
+        <Link to={{
+          pathname: `/portfolio/${props.item.slug}`, 
+          query:{thing: 'asdf', another1: 'stuff'}
+        }}>
+          <Card.Img variant="top" src={props.item.imagen}/>
+        </Link>
         <Card.Body>
           <Card.Title>{props.item.title}</Card.Title>
-          <Card.Text>{props.item.description}</Card.Text>
+          {/* <Card.Body dangerouslySetInnerHTML={{__html: props.item.description}}></Card.Body> */}
         </Card.Body>
       </Card>
     </Col>
@@ -59,12 +30,44 @@ function MyCard(props) {
 }
 
 function Portfolio() {
+  const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    async function getCategories() {
+      await fetch(API_URL).then(response => response.json()).then((actualData) => {
+        getData(actualData[0].hijos[0].id);
+        setError(null);
+      }).catch((err) => {
+        setError(err.message);
+      }).finally(() => setLoading(false));
+    }
+    getCategories()
+
+    async function getData(id) {
+      await fetch(`${baseUrl}/control/es/productos?ucode=${UCODE}&categoria=${id}`)
+      .then(response => response.json()).then((actualData) => {
+        setProducts(actualData);
+        setError(null);
+      }).catch((err) => {
+        setError(err.message);
+        setProducts(null);
+      }).finally(() => setLoading(false));
+    }
+
+  }, []);
+
   return (
     <Container className="my-5 py-3">
       <h2 className='text-center'>Portafolio</h2>
-      <p className='myDescription fs-5'>En el desarrollo de mi carrera profesional tuve la oportunidad de realizar algunos proyectos de manera libre.</p>
+      <p className='myDescription fs-5'>En el desarrollo de mi carrera profesional tuve la oportunidad de realizar algunos proyectos.</p>
+      {loading && <div>A moment please...</div>}
+      {error && (
+        <div>{`There is a problem fetching the - ${error}`}</div>
+      )}
       <Row>
-        { LIST.map((t, index)=> <MyCard item={t} key={index.toString()} />) }
+        {products && products.map((t, index)=> <MyCard item={t} key={index.toString()} />) }
       </Row>
     </Container>
   );
