@@ -4,24 +4,30 @@ import Col from 'react-bootstrap/Col';
 import { Card } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { baseUrl, UCODE, CAT_CODE } from '../services/common';
+import { baseUrl, UCODE, CAT_CODE1 } from '../services/common';
 
-const API_URL = `${baseUrl}/control/categorias/?ucode=${UCODE}&codigo=${CAT_CODE}`
+// list(params: any = {}): Observable<Categoria[]> {
+//   return this.http.get<Categoria[]>(`${API_URL}/${ucode}`, { params })
+//   .pipe(catchError(errorHandler));
+// }
 
-// this.categs = r[0].hijos.filter((t:any) => t.is_public);
+// listSubCats(parent:string): Observable<Categoria[]> {
+//   return this.http.get<Categoria[]>(`${API_URL}/${parent}/childs`)
+//   .pipe(catchError(errorHandler));
+// }
 
 function MyCard(props) {
   return (
     <Col md={4} className="mb-3">
       <Card className='shadow'>
         <Link to={{
-          pathname: `/portfolio/${props.item.slug}`, 
+          pathname: `/portfolio/${props.item.slug}`,
           query:{thing: 'asdf', another1: 'stuff'}
         }}>
           <Card.Img variant="top" src={props.item.imagen}/>
         </Link>
         <Card.Body>
-          <Card.Title>{props.item.title}</Card.Title>
+          <Card.Title className='h6'>{props.item.nombre}</Card.Title>
           {/* <Card.Body dangerouslySetInnerHTML={{__html: props.item.description}}></Card.Body> */}
         </Card.Body>
       </Card>
@@ -30,29 +36,38 @@ function MyCard(props) {
 }
 
 function Portfolio() {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
   useEffect(() => {
     async function getCategories() {
-      await fetch(API_URL).then(response => response.json()).then((actualData) => {
-        getData(actualData[0].hijos[0].id);
+      await fetch(`${baseUrl}/api/categories/${UCODE}?code=${CAT_CODE1}&isActive=true`)
+      .then(r => r.json()).then((cats) => {
+        getSubcategories(cats[0]._id);
         setError(null);
-      }).catch((err) => {
-        setError(err.message);
-      }).finally(() => setLoading(false));
+      }).catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
     }
     getCategories()
 
-    async function getData(id) {
-      await fetch(`${baseUrl}/control/es/productos?ucode=${UCODE}&categoria=${id}`)
-      .then(response => response.json()).then((actualData) => {
-        setProducts(actualData);
+    async function getSubcategories(parent) {
+      await fetch(`${baseUrl}/api/categories/${parent}/childs?isActive=true`)
+      .then(response => response.json()).then((subs) => {
+        getData(subs[0]._id);
+        setError(null);
+      }).catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+    }
+
+    async function getData(categoryId) {
+      await fetch(`${baseUrl}/api/products/${categoryId}/public?isActive=true`)
+      .then(response => response.json()).then(actualData => {
+        const prods = actualData.map(t=> new Object({...t, imagen:`${baseUrl}/${t.imgs[0]}`}))
+        setProducts(prods); 
         setError(null);
       }).catch((err) => {
-        setError(err.message);
-        setProducts(null);
+        setError(err.message); setProducts(null);
       }).finally(() => setLoading(false));
     }
 

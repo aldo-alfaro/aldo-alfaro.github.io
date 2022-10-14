@@ -15,7 +15,8 @@ function Header() {
             <Navbar.Collapse className="justify-content-end">
             <Nav className="ms-auto">
                 <Nav.Link as={Link} to="/">Inicio</Nav.Link>
-                <Nav.Link as={Link} to="/about">About</Nav.Link>
+                <Nav.Link as={Link} to="/about">Sobre mi</Nav.Link>
+                <Nav.Link as={Link} to="/portfolio">Portafolio</Nav.Link>
                 {/* <Nav.Link href="#link">Link</Nav.Link> */}
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

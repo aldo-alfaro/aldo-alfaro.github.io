@@ -13,12 +13,12 @@ const LIST = [
   {
     title:'django',
     url:'imgs/logos/django.png',
-    porcent:87,
+    porcent:95,
   },
   {
     title:'django rest framework',
     url:'imgs/logos/drf.png',
-    porcent:85,
+    porcent:90,
   },
   {
     title:'angular',
@@ -51,9 +51,9 @@ const LIST = [
     porcent:80,
   },
   {
-    title:'nest',
+    title:'nest js',
     url:'imgs/logos/nest.svg',
-    porcent:25,
+    porcent:45,
   },
   {
     title:'java',
@@ -61,9 +61,9 @@ const LIST = [
     porcent:50,
   },
   {
-    title:'node + express js + mongodd',
+    title:'node + express js + mongodb',
     url:'imgs/logos/node_express.jpeg',
-    porcent:50,
+    porcent:60,
   }
 ]
 
@@ -83,7 +83,7 @@ function MyItems(props) {
 function Skills() {
   return (
     <Container className="my-5 py-3">
-      <h2 className='text-center'>Skills</h2>
+      <h2 className='text-center'>Mis habilidades</h2>
       <Row className='justify-content-center'>
       { LIST.map((t, index)=> <MyItems item={t} key={index.toString()} />) }
       </Row>
