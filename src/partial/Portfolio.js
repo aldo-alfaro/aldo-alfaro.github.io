@@ -2,19 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Card } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { baseUrl, UCODE, CAT_CODE1 } from '../services/common';
-
-// list(params: any = {}): Observable<Categoria[]> {
-//   return this.http.get<Categoria[]>(`${API_URL}/${ucode}`, { params })
-//   .pipe(catchError(errorHandler));
-// }
-
-// listSubCats(parent:string): Observable<Categoria[]> {
-//   return this.http.get<Categoria[]>(`${API_URL}/${parent}/childs`)
-//   .pipe(catchError(errorHandler));
-// }
+import { baseUrl, UCODE } from '../services/common';
 
 function MyCard(props) {
   return (
@@ -22,13 +12,14 @@ function MyCard(props) {
       <Card className='shadow'>
         <Link to={{
           pathname: `/portfolio/${props.item.slug}`,
-          query:{thing: 'asdf', another1: 'stuff'}
+          query: { thing: 'asdf', another1: 'stuff' }
         }}>
-          <Card.Img variant="top" src={props.item.imagen}/>
+          <Card.Img variant="top" src={`${baseUrl}/${props.item.imgs[0]}`} />
         </Link>
         <Card.Body>
-          <Card.Title className='h6'>{props.item.nombre}</Card.Title>
-          {/* <Card.Body dangerouslySetInnerHTML={{__html: props.item.description}}></Card.Body> */}
+          <Link to={{ pathname: `/portfolio/${props.item.slug}` }} className='text-dark h5'>
+            {props.item.title}
+          </Link>
         </Card.Body>
       </Card>
     </Col>
@@ -36,41 +27,23 @@ function MyCard(props) {
 }
 
 function Portfolio() {
-  const [products, setProducts] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
-    async function getCategories() {
-      await fetch(`${baseUrl}/api/categories/${UCODE}?code=${CAT_CODE1}&isActive=true`)
-      .then(r => r.json()).then((cats) => {
-        getSubcategories(cats[0]._id);
-        setError(null);
-      }).catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-    }
-    getCategories()
-
-    async function getSubcategories(parent) {
-      await fetch(`${baseUrl}/api/categories/${parent}/childs?isActive=true`)
-      .then(response => response.json()).then((subs) => {
-        getData(subs[0]._id);
-        setError(null);
-      }).catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+    async function getData() {
+      await fetch(`${baseUrl}/api/blogs/${UCODE}/public`)
+        .then(response => response.json()).then(actualData => {
+          // const prods = actualData.map(t=> new Object({...t, imagen:`${baseUrl}/${t.imgs[0]}`}))
+          setBlogs(actualData);
+          setError(null);
+        }).catch((err) => {
+          setError(err.message); setBlogs(null);
+        }).finally(() => setLoading(false));
     }
 
-    async function getData(categoryId) {
-      await fetch(`${baseUrl}/api/products/${categoryId}/public?isActive=true`)
-      .then(response => response.json()).then(actualData => {
-        const prods = actualData.map(t=> new Object({...t, imagen:`${baseUrl}/${t.imgs[0]}`}))
-        setProducts(prods); 
-        setError(null);
-      }).catch((err) => {
-        setError(err.message); setProducts(null);
-      }).finally(() => setLoading(false));
-    }
-
+    getData()
   }, []);
 
   return (
@@ -82,7 +55,7 @@ function Portfolio() {
         <div>{`There is a problem fetching the - ${error}`}</div>
       )}
       <Row>
-        {products && products.map((t, index)=> <MyCard item={t} key={index.toString()} />) }
+        {blogs && blogs.map((t, index) => <MyCard item={t} key={index.toString()} />)}
       </Row>
     </Container>
   );

@@ -1,17 +1,35 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Carousel from 'react-bootstrap/Carousel';
+import { baseUrl } from '../../services/common';
+import { useState } from "react";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ImageModal(props) {
-  console.log('--------->', props);
+  const [modalShow, setModalShow] = useState(false);
   return (
-    <Modal {...props} size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered>
-      <img className="d-block w-100" src={props.imagen} />
-      <Modal.Footer>
-        <Button onClick={props.onHide} size="sm">Close</Button>
-      </Modal.Footer>
-    </Modal>
+    <>
+      <Button variant="primary" onClick={() => setModalShow(true)} size="sm">
+        <FontAwesomeIcon icon={faEye} /> Ver
+      </Button>
+      <Modal size="lg" show={modalShow}
+        centered>
+        <Carousel>
+          {
+            props.blog.imgs.map((t, index) => {
+              return <Carousel.Item>
+                <img className="w-100" src={baseUrl + '/' + t} alt={props.blog.title} />
+              </Carousel.Item>
+            })
+          }
+        </Carousel>
+        <Modal.Footer>
+          <h5>{props.blog.title}</h5>
+          <Button onClick={() => setModalShow(false)} size="sm">Close</Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 

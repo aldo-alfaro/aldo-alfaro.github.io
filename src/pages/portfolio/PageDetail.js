@@ -2,32 +2,28 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from "react";
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel';
 import { baseUrl } from '../../services/common';
 import ImageModal from './ImageModal';
-import Button from 'react-bootstrap/Button';
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function PageDetail() {
   let { slug } = useParams()
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
-    fetch(`${baseUrl}/api/products/${slug}/by-slug`)
-      .then(response => response.json()).then((actualData) => {
+    fetch(`${baseUrl}/api/blogs/${slug}/by-slug`)
+      .then(response => response.json()).then(actualData => {
         setData(actualData);
         setError(null);
       }).catch((err) => {
         setError(err.message);
         setData(null);
       }).finally(() => setLoading(false))
-  }, {});
-
+  }, []);
+  
   return (
     <Container className="my-5 py-4">
       {loading && <div className='text-center'>A moment please...</div>}
@@ -46,21 +42,17 @@ function PageDetail() {
                     alt={data.nombre}
                   />
                   <Carousel.Caption>
-                    <Button variant="primary" onClick={() => setModalShow(true)} size="sm">
-                      <FontAwesomeIcon icon={faEye} /> Ver
-                    </Button>
-                    <ImageModal show={modalShow} onHide={() => setModalShow(false)} imagen={baseUrl + '/' + t} />
+                    <ImageModal blog={data} />
                   </Carousel.Caption>
                 </Carousel.Item>
               })
             }
           </Carousel>
         </Col>
-
         <Col md={6} className="text-start mt-4">
-          <h2>{data && data.nombre}</h2>
+          <h2>{data && data.title}</h2>
           <hr />
-          <div dangerouslySetInnerHTML={{ __html: data && data.descripcion }}></div>
+          <div dangerouslySetInnerHTML={{ __html: data && data.description }}></div>
         </Col>
       </Row>
 
