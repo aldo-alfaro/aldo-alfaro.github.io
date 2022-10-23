@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image'
+// import Image from 'react-bootstrap/Image'
 // import aldo1 from "../assets/aldo1.jpeg";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,7 +14,7 @@ function About() {
       <hr/>
       <Row>
         <Col md={4} className="text-center order-md-2 mb-3">
-          <Image src={require("../assets/aldito.png")} roundedCircle className='aldo-img' width={132} />
+          {/* <Image src={require("../assets/aldito.png")} roundedCircle className='aldo-img' width={132} /> */}
           <Row>
             <Col className='col-2'>
               <FontAwesomeIcon icon={faGraduationCap} size={"lg"} />
