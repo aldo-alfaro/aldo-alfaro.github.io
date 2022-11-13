@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
-import { baseUrl } from '../../services/common';
+import { DRIVE_BASE_URL } from '../../services/common';
 import { useState } from "react";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,7 +19,7 @@ function ImageModal(props) {
           {
             props.blog.imgs.map((t, index) => {
               return <Carousel.Item>
-                <img className="w-100" src={baseUrl + '/' + t} alt={props.blog.title} />
+                <img className="w-100" src={DRIVE_BASE_URL + t} alt={props.blog.title} />
               </Carousel.Item>
             })
           }

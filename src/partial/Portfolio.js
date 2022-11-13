@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { baseUrl, UCODE } from '../services/common';
+import { baseUrl, DRIVE_BASE_URL, UCODE } from '../services/common';
 
 function MyCard(props) {
   return (
@@ -14,7 +14,7 @@ function MyCard(props) {
           pathname: `/portfolio/${props.item.slug}`,
           query: { thing: 'asdf', another1: 'stuff' }
         }}>
-          <Card.Img variant="top" src={`${baseUrl}/${props.item.imgs[0]}`} />
+          <Card.Img variant="top" src={`${DRIVE_BASE_URL}${props.item.imgs[0]}`} />
         </Link>
         <Card.Body>
           <Link to={{ pathname: `/portfolio/${props.item.slug}` }} className='text-dark h5'>

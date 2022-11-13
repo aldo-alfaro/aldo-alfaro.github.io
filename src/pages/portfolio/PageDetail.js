@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel';
-import { baseUrl } from '../../services/common';
+import { baseUrl, DRIVE_BASE_URL } from '../../services/common';
 import ImageModal from './ImageModal';
 
 function PageDetail() {
@@ -38,7 +38,7 @@ function PageDetail() {
                 return <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src={baseUrl + '/' + t}
+                    src={DRIVE_BASE_URL + t}
                     alt={data.nombre}
                   />
                   <Carousel.Caption>
